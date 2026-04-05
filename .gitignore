@@ -13,4 +13,4 @@ Build/
 *.app
 *.iwyu.json
 
-Content/StarterContent
+/Content/StarterContent
