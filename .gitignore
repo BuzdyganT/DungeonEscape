@@ -12,3 +12,5 @@ Build/
 *.sdf
 *.app
 *.iwyu.json
+
+Content/StarterContent
