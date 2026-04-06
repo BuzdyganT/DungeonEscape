@@ -4,7 +4,7 @@ DerivedDataCache/
 Intermediate/
 Saved/
 Build/
-
+.vsconfig
 .idea/
 *.sln
 *.suo
