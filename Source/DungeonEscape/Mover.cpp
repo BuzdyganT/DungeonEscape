@@ -18,25 +18,9 @@ UMover::UMover()
 void UMover::BeginPlay()
 {
 	Super::BeginPlay();
-	float MyFloat = 10.0f;
-	float *FloatPtr = &MyFloat;
-	
-	float Result = *FloatPtr + 5;
-	UE_LOG(LogTemp, Display, TEXT("%f"), Result);
-	
-	*FloatPtr = 30.0f;
-	UE_LOG(LogTemp, Display, TEXT("%f"), Result);
+	StartLocation = GetOwner()->GetActorLocation();
+	UE_LOG(LogTemp,Display,TEXT("%s, %s"),*GetOwner()->GetActorNameOrLabel(),*StartLocation.ToCompactString());
 
-	// --
-	FVector MyVector = FVector(1.0, 1.0, 1.0);
-	FVector *MyVectorPtr = &MyVector;
-	
-	MyVectorPtr->X = 3.5;
-	MyVectorPtr->Y = 4.5;
-	MyVectorPtr->Z = 5.5;
-	UE_LOG(LogTemp, Display, TEXT("MyVector: %s"), *(MyVector.ToCompactString()));
-
-	
 }
 
 
@@ -45,6 +29,11 @@ void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 	
+	FVector CurrentLocation = GetOwner()->GetActorLocation();
+	
+	CurrentLocation.Z = CurrentLocation.Z + 100.0f *DeltaTime;
+	
+	GetOwner()->SetActorLocation(CurrentLocation);
 	
 }
 
