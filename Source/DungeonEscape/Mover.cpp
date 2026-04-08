@@ -31,8 +31,13 @@ void UMover::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 	
 	FVector CurrentLocation = GetOwner()->GetActorLocation();
 	
-	CurrentLocation.Z = CurrentLocation.Z + 100.0f *DeltaTime;
-	
+
+	if (DistanceMoved <= MoveDistance)
+	{
+		DistanceMoved = FMath::Abs(CurrentLocation.Z - StartLocation.Z);
+		CurrentLocation.Z = CurrentLocation.Z + 100.0f *DeltaTime;
+
+	}
 	GetOwner()->SetActorLocation(CurrentLocation);
 	
 }
