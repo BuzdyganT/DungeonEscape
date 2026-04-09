@@ -24,8 +24,14 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	FVector StartLocation;
-	FVector EndLocation;
-	float DistanceMoved = 0;
-	UPROPERTY(EditAnywhere);
-	float MoveDistance = 200;
+	FVector TargetLocation;
+	
+	UPROPERTY(EditAnywhere)
+	FVector MoveOffset;
+	
+	UPROPERTY(EditAnywhere)
+	float MoveTime;
+	
+	UPROPERTY(EditAnywhere)
+	bool ShouldMove = false;
 };
