@@ -34,4 +34,7 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	bool ShouldMove = false;
+	
+	UPROPERTY(VisibleAnywhere)
+	bool ReachTarget = false;
 };
