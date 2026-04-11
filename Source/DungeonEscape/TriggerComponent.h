@@ -13,6 +13,9 @@ UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class DUNGEONESCAPE_API UTriggerComponent : public UBoxComponent
 {
 	GENERATED_BODY()
+	
+public:
+	UTriggerComponent();
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
