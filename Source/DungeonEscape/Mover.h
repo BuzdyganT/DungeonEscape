@@ -36,5 +36,5 @@ public:
 	bool ShouldMove = false;
 	
 	UPROPERTY(VisibleAnywhere)
-	bool ReachTarget = false;
+	bool ReachedTarget = false;
 };
