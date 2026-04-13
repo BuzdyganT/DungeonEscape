@@ -31,7 +31,7 @@ void UTriggerComponent::BeginPlay()
 	}
 	if (IsPressurePlate)
 	{
-		OnComponentBeginOverlap.AddDynamic(this,&UTriggerComponent::O nOverlapBegin);
+		OnComponentBeginOverlap.AddDynamic(this,&UTriggerComponent::OnOverlapBegin);
 		OnComponentEndOverlap.AddDynamic(this,&UTriggerComponent::OnOverlapEnd);
 	}
 }
@@ -46,7 +46,7 @@ void UTriggerComponent::TickComponent(float DeltaTime, ELevelTick TickType,
 void UTriggerComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (OtherActor->ActorHasTag("PressurePlateActivator"))
+	if (OtherActor && OtherActor->ActorHasTag("PressurePlateActivator"))
 	{
 		if (Mover)
 		{
@@ -59,11 +59,11 @@ void UTriggerComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 void UTriggerComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	if (OtherActor->ActorHasTag("PressurePlateActivator"))
+	if (OtherActor && OtherActor->ActorHasTag("PressurePlateActivator"))
 	{
 		if (Mover)
 		{
-			Mover->ShouldMove = false;
+			Mover->ShouldMove = true;
 		}
 	}
 }
