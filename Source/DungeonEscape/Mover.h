@@ -23,6 +23,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	bool GetShouldMove();
+	void SetShouldMove(bool NewShouldMove);
+	
 	FVector StartLocation;
 	FVector TargetLocation;
 	
@@ -32,9 +35,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	float MoveTime;
 	
-	UPROPERTY(EditAnywhere)
-	bool ShouldMove = false;
-	
 	UPROPERTY(VisibleAnywhere)
 	bool ReachedTarget = false;
+private:
+	UPROPERTY(EditAnywhere)
+	bool ShouldMove = false;
 };
