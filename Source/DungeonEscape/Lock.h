@@ -25,6 +25,8 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	bool GetIsKeyPlaced();
+	void SetIsKeyPlaced(bool NewIsKeyPlaced);
 	
 	UPROPERTY(VisibleAnywhere)
 	USceneComponent* RootComp;
@@ -34,4 +36,12 @@ public:
 	
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* KeyItemMesh;
+	
+	UPROPERTY(EditAnywhere)
+	FString KeyItemName;
+	
+private:
+	UPROPERTY(VisibleAnywhere)
+	bool IsKeyPlaced = false;
+	
 };

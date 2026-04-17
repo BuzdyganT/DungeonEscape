@@ -26,6 +26,7 @@ ALock::ALock()
 void ALock::BeginPlay()
 {
 	Super::BeginPlay();
+	SetIsKeyPlaced(true);
 	
 }
 
@@ -35,4 +36,19 @@ void ALock::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
+
+bool ALock::GetIsKeyPlaced()
+{
+	return IsKeyPlaced;
+}
+
+void ALock::SetIsKeyPlaced(bool NewIsKeyPlaced)
+{
+	IsKeyPlaced = NewIsKeyPlaced;
+	
+	TriggerComp->Trigger(NewIsKeyPlaced);
+	KeyItemMesh->SetVisibility(NewIsKeyPlaced);
+}
+
+
 
