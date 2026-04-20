@@ -69,6 +69,13 @@ void ADungeonEscapeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	}
 }
 
+void Myfunction(FVector& argument)
+{
+	argument.X += 1;	
+	argument.Y += 2;
+	argument.Z += 3;
+}
+
 void ADungeonEscapeCharacter::Interact()
 {
 	FVector Start = FirstPersonCameraComponent->GetComponentLocation();
@@ -88,9 +95,15 @@ void ADungeonEscapeCharacter::Interact()
 	
 	UE_LOG(LogTemp,Display,TEXT("%s"),*LocalRef.ToCompactString())
 
+	UE_LOG(LogTemp,Display,TEXT("%s"),*Local.ToCompactString())
+	Myfunction(Local);
+	UE_LOG(LogTemp,Display,TEXT("%s"),*Local.ToCompactString())
+
 	
 	// GetWorld()->SweepSingleByChannel();
 }
+
+
 
 
 void ADungeonEscapeCharacter::MoveInput(const FInputActionValue& Value)
