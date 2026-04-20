@@ -69,13 +69,6 @@ void ADungeonEscapeCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	}
 }
 
-void Myfunction(FVector& argument)
-{
-	argument.X += 1;	
-	argument.Y += 2;
-	argument.Z += 3;
-}
-
 void ADungeonEscapeCharacter::Interact()
 {
 	FVector Start = FirstPersonCameraComponent->GetComponentLocation();
@@ -84,23 +77,27 @@ void ADungeonEscapeCharacter::Interact()
 	
 	FCollisionShape InteractionSphere = FCollisionShape::MakeSphere(InteractionSphereRadius);
 	DrawDebugSphere(GetWorld(),End,InteractionSphereRadius,32,FColor::Blue,false,5.0f);
-	
-	FVector Local = FVector(0.0f,0.0f,0.0f); 
-	FVector& LocalRef = Local;
-	UE_LOG(LogTemp,Display,TEXT("%s"),*LocalRef.ToCompactString())
 
-	LocalRef.X += 2;
-	LocalRef.Y += 5;
-	LocalRef.Z += 8;
+	FHitResult HitResult;
 	
-	UE_LOG(LogTemp,Display,TEXT("%s"),*LocalRef.ToCompactString())
+	bool HasHit = GetWorld()->SweepSingleByChannel(
+		HitResult,
+		Start,End,
+		FQuat::Identity,
+		ECC_GameTraceChannel2,
+		InteractionSphere
+		);
+	if (HasHit)
+	{
+		AActor * HitActor = HitResult.GetActor();
+		UE_LOG(LogTemp, Display, TEXT("%s Hit!!"), *HitActor->GetName())
+	}
+	else
+	{
+		UE_LOG(LogTemp, Display, TEXT("No actor hit!"))
 
-	UE_LOG(LogTemp,Display,TEXT("%s"),*Local.ToCompactString())
-	Myfunction(Local);
-	UE_LOG(LogTemp,Display,TEXT("%s"),*Local.ToCompactString())
-
+	}
 	
-	// GetWorld()->SweepSingleByChannel();
 }
 
 
