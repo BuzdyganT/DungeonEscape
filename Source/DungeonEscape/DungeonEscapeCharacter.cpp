@@ -99,14 +99,16 @@ void ADungeonEscapeCharacter::Interact()
 		{
 			if (ACollectableItem* CollectableItem = Cast<ACollectableItem>(HitActor))
 			{
-				UE_LOG(LogTemp, Display, TEXT("Collectable Item with name: %s"),*CollectableItem->ItemName)
+				ItemList.Add(CollectableItem->ItemName);
+				
+				CollectableItem->Destroy();
 			}
 		}
 		else if (HitActor->ActorHasTag("Lock"))
 		{
 			if (ALock* LockActor = Cast<ALock>(HitActor))
 			{
-				UE_LOG(LogTemp, Display, TEXT("Lock with name: %s"), *LockActor->KeyItemName)
+				// ItemList.Remove(LockActor->KeyItemName);
 			}
 		}
 	}
