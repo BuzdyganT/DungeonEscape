@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "DungeonEscapeCharacter.h"
+
+#include "CollectableItem.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -9,6 +11,9 @@
 #include "InputActionValue.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "DungeonEscape.h"
+
+#include "CollectableItem.h"
+#include "Lock.h"
 
 ADungeonEscapeCharacter::ADungeonEscapeCharacter()
 {
@@ -92,12 +97,17 @@ void ADungeonEscapeCharacter::Interact()
 		AActor * HitActor = HitResult.GetActor();
 		if (HitActor->ActorHasTag("CollectableItem"))
 		{
-			UE_LOG(LogTemp, Display, TEXT("CollectableItem"))
+			if (ACollectableItem* CollectableItem = Cast<ACollectableItem>(HitActor))
+			{
+				UE_LOG(LogTemp, Display, TEXT("Collectable Item with name: %s"),*CollectableItem->ItemName)
+			}
 		}
 		else if (HitActor->ActorHasTag("Lock"))
 		{
-			UE_LOG(LogTemp, Display, TEXT("Lock"))
-
+			if (ALock* LockActor = Cast<ALock>(HitActor))
+			{
+				UE_LOG(LogTemp, Display, TEXT("Lock with name: %s"), *LockActor->KeyItemName)
+			}
 		}
 	}
 	else
