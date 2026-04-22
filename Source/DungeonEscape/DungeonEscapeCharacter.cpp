@@ -126,7 +126,8 @@ void ADungeonEscapeCharacter::Interact()
 				{
 					ItemList.Add(LockActor->KeyItemName);
 					LockActor->SetIsKeyPlaced(false);
-			    }
+				}
+			}
 		}
 	}
 	else
