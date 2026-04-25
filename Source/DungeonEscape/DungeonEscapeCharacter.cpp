@@ -78,10 +78,10 @@ void ADungeonEscapeCharacter::Interact()
 {
 	FVector Start = FirstPersonCameraComponent->GetComponentLocation();
 	FVector End = Start + (FirstPersonCameraComponent->GetForwardVector() * MaxInteractionDistance);
-	DrawDebugLine(GetWorld(),Start,End,FColor::Red,false,5.0f);
+	//DrawDebugLine(GetWorld(),Start,End,FColor::Red,false,5.0f);
 	
 	FCollisionShape InteractionSphere = FCollisionShape::MakeSphere(InteractionSphereRadius);
-	DrawDebugSphere(GetWorld(),End,InteractionSphereRadius,32,FColor::Blue,false,5.0f);
+	//DrawDebugSphere(GetWorld(),End,InteractionSphereRadius,32,FColor::Blue,false,5.0f);
 
 	FHitResult HitResult;
 	
